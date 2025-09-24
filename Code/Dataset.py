@@ -11,6 +11,7 @@ class Electricity(Dataset):
         self.file_path = f'{path}/electric_data.hdf5'
 
         with File(self.file_path, 'r') as file:
+            self.file = file
             self.dataset_len = len(file[f'target'])
 
     def __len__(self):
@@ -23,3 +24,4 @@ class Electricity(Dataset):
 
         return x, y
     
+
