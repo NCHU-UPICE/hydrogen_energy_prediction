@@ -5,8 +5,8 @@ from h5py import File
 
 
 #-----------------------
-model_pth = r'src/weights.pth'
-data_pth  = r'src/Data/electric_data.hdf5'
+model_pth = r'weights.pth'
+data_pth  = r'Data/electric_data.hdf5'
 #-----------------------
 
 
@@ -46,6 +46,7 @@ def run_inference_old_data():
     pred_y = model(x)
 
     return pred_y
+
 
 
 print(run_inference_old_data())
