@@ -41,7 +41,7 @@ model.eval()
 
 #------------------------------------------------------------- Run Inference on Old Dataset
 def run_inference_old_data():
-    x = torch.from_numpy(File(data_pth, 'r')[f'features'][:, :, :]).float() # x ----> [dataset_length, 9, 96]
+    x = torch.from_numpy(File(data_pth, 'r')[f'features'][0, :, :]).float() # x ----> [dataset_length, 9, 96]
     # y = torch.from_numpy(File(data_pth, 'r')[f'target'][:, :]).float()    # Uncomment if you want to compare pred_y with y
     pred_y = model(x)
 
@@ -50,3 +50,4 @@ def run_inference_old_data():
 
 
 print(run_inference_old_data())
+
