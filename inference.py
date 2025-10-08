@@ -5,8 +5,8 @@ from h5py import File
 
 
 #-----------------------
-model_pth = r'weights.pth'
-data_pth  = r'Data/electric_data.hdf5'
+model_pth = r"C:\Users\kitty\Desktop\HydrogenEnergy\src\weights\weights.pth"
+data_pth  = r"C:\Users\kitty\Desktop\HydrogenEnergy\src\Data\electric_data.hdf5"
 #-----------------------
 
 
@@ -29,7 +29,7 @@ class Net(Module):
 
     def forward(self, x):
      
-        x = x.reshape(x.shape[0], 1, 9, 96)
+        x = x.reshape(1, 1, 9, 96)
         output = self.conv(x)
         return output 
 
@@ -38,16 +38,13 @@ class Net(Module):
 model = Net()
 model.load_state_dict(torch.load(model_pth, weights_only=True, map_location=torch.device('cpu')))
 model.eval()
-
 #------------------------------------------------------------- Run Inference on Old Dataset
 def run_inference_old_data():
-    x = torch.from_numpy(File(data_pth, 'r')[f'features'][0, :, :]).float() # x ----> [dataset_length, 9, 96]
+    x = torch.from_numpy(File(data_pth, 'r')[f'features'][0]).float() # x ----> [dataset_length, 9, 96]
     # y = torch.from_numpy(File(data_pth, 'r')[f'target'][:, :]).float()    # Uncomment if you want to compare pred_y with y
     pred_y = model(x)
 
     return pred_y
 
 
-
 print(run_inference_old_data())
-
